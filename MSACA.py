@@ -136,7 +136,7 @@ if __name__ == '__main__':
 
                 '''Calculate Crowding Distance'''
                 crowded_distance = calculate_crowding_distance([norm_objs.tolist(), fronts[0]])
-                border_list = heapq.nlargest(6, crowded_distance, key=crowded_distance.get)
+                border_list = heapq.nlargest(5, crowded_distance, key=crowded_distance.get)
 
                 '''Global Search based on Multi-Level Group Interaction'''
                 input_global = [[i, archive[i][-1], decodes, border_list, X, fronts, ranks, process, mach_ava, job_release, layer_stage, job_num, mach_lists, prd_pt, weight, prd, release, sum_op] for i in range(Np)]
@@ -210,7 +210,7 @@ if __name__ == '__main__':
                     raise Exception('ERROR')
             objs = [archive[i][1] for i in range(Np) if ranks[i] == 0]
             run_doc[run]['pareto'] = NoIndent(np.unique(np.array(objs), axis=0).tolist())
-            dir1 = f'Outputs/MSIPCA/'
+            dir1 = f'Outputs/MSACA/'
             file = f'{dir1}/{inst_k}_16p.json'
             if not os.path.exists(dir1):
                 os.makedirs(dir1)
